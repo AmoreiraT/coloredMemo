@@ -30,31 +30,37 @@ def extrair_informacoes(driver):
         # Selecionar blocos de imagem
         for img_div in soup.select('div[jsname="N9Xkfe"]'):
             try:
-                # URL da imagem
-                url_imagem = img_div.select_one('img')['src']
-                
-                # Referência da imagem
-                referencia = img_div.select_one('a[jsname="hSRGPd"]').text.strip()
-                url_referencia = img_div.select_one('a[jsname="hSRGPd"]')['href']
-                url_referencia = f"https://www.google.com{url_referencia}"
+                # Verificar se os elementos existem antes de acessá-los
+                img_tag = img_div.select_one('img')
+                a_tag = img_div.select_one('a[jsname="hSRGPd"]')
+                span_tag = img_div.select_one('span[jsname="sTFXNd"]')
 
-                # Créditos
-                creditos = img_div.select_one('span[jsname="sTFXNd"]').text.strip()
+                if img_tag and a_tag and span_tag:
+                    # URL da imagem
+                    url_imagem = img_tag.get('src')
 
-                # Verificar se a imagem é de Pitangui antiga
-                descricao = img_div.select_one('img')['alt']
-                if any(keyword in descricao.lower() for keyword in ["pitangui", "1950", "preto e branco", "histórica"]):
-                    imagens.append({
-                        'url_imagem': url_imagem,
-                        'referencia': referencia,
-                        'url_referencia': url_referencia,
-                        'creditos': creditos,
-                        'descricao': descricao
-                    })
-                    logging.info(f"Informações da imagem extraídas: {url_imagem}")
+                    # Referência da imagem
+                    referencia = a_tag.text.strip()
+                    url_referencia = f"https://www.google.com{a_tag.get('href')}"
+
+                    # Créditos
+                    creditos = span_tag.text.strip()
+
+                    # Verificar se a imagem é de Pitangui antiga
+                    descricao = img_tag.get('alt', '')
+                    if any(keyword in descricao.lower() for keyword in ["pitangui", "1950", "preto e branco", "histórica"]):
+                        imagens.append({
+                            'url_imagem': url_imagem,
+                            'referencia': referencia,
+                            'url_referencia': url_referencia,
+                            'creditos': creditos,
+                            'descricao': descricao
+                        })
+                        logging.info(f"Informações da imagem extraídas: {url_imagem}")
+                    else:
+                        logging.info(f"Imagem ignorada: {url_imagem} - Descrição: {descricao}")
                 else:
-                    logging.info(f"Imagem ignorada: {url_imagem} - Descrição: {descricao}")
-
+                    logging.info("Elemento esperado não encontrado na estrutura HTML.")
             except Exception as e:
                 logging.error(f"Erro ao extrair informações da imagem: {e}")
                 continue
