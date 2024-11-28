@@ -24,41 +24,44 @@ if not os.path.exists('fotos_acervos_pitangui'):
 def extrair_informacoes(driver):
     """Extrai informações das imagens do Google Imagens."""
     try:
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
         imagens = []
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-        # Selecionar blocos de imagem
+        # Selecionar blocos de imagem e clicar nas imagens relevantes
         for img_div in soup.select('div[jsname="N9Xkfe"]'):
             try:
-                # Verificar se os elementos existem antes de acessá-los
                 img_tag = img_div.select_one('img')
-                a_tag = img_div.select_one('a[jsname="hSRGPd"]')
                 span_tag = img_div.select_one('span[jsname="sTFXNd"]')
 
-                if img_tag and a_tag and span_tag:
-                    # URL da imagem
-                    url_imagem = img_tag.get('src')
-
-                    # Referência da imagem
-                    referencia = a_tag.text.strip()
-                    url_referencia = f"https://www.google.com{a_tag.get('href')}"
-
-                    # Créditos
-                    creditos = span_tag.text.strip()
-
-                    # Verificar se a imagem é de Pitangui antiga
+                if img_tag and span_tag:
                     descricao = img_tag.get('alt', '')
                     if any(keyword in descricao.lower() for keyword in ["pitangui", "1950", "preto e branco", "histórica"]):
+                        # Clicar na imagem para abrir o detalhe
+                        img_tag.click()
+                        WebDriverWait(driver, 10).until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, 'img.n3VNCb'))
+                        )
+                        detail_soup = BeautifulSoup(driver.page_source, 'html.parser')
+                        detail_img_tag = detail_soup.select_one('img.n3VNCb')
+                        detail_url = detail_img_tag.get('src')
+
+                        # Referência da imagem
+                        referencia = img_div.select_one('a[jsname="hSRGPd"]').text.strip()
+                        url_referencia = f"https://www.google.com{img_div.select_one('a[jsname="hSRGPd"]')['href']}"
+
+                        # Créditos
+                        creditos = span_tag.text.strip()
+
                         imagens.append({
-                            'url_imagem': url_imagem,
+                            'url_imagem': detail_url,
                             'referencia': referencia,
                             'url_referencia': url_referencia,
                             'creditos': creditos,
                             'descricao': descricao
                         })
-                        logging.info(f"Informações da imagem extraídas: {url_imagem}")
+                        logging.info(f"Informações da imagem extraídas: {detail_url}")
                     else:
-                        logging.info(f"Imagem ignorada: {url_imagem} - Descrição: {descricao}")
+                        logging.info(f"Imagem ignorada: {descricao}")
                 else:
                     logging.info("Elemento esperado não encontrado na estrutura HTML.")
             except Exception as e:
@@ -88,7 +91,6 @@ def extrair_detalhes_imagem(url_referencia):
         response = requests.get(url_referencia)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        # Extraímos informações adicionais, como textos relevantes que possam estar na página
         detalhes = soup.get_text(separator=' ', strip=True)
         return detalhes
     except Exception as e:
@@ -105,7 +107,7 @@ try:
     # Acessar a página de busca do Google Imagens
     driver.get(search_url)
 
-    # Aguardar o carregamento dos resultados (ajuste o tempo de espera se necessário)
+    # Aguardar o carregamento dos resultados
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, 'div[jsname="N9Xkfe"]'))
     )
