@@ -1,0 +1,19 @@
+{
+	"configurations": [
+		{
+			"type": "debugpy",
+			"request": "launch",
+			"name": "Launch Scraping Script",
+			"program": "${workspaceFolder}/${input:scriptName}",
+			"console": "integratedTerminal"
+		}
+	],
+	"inputs": [
+		{
+			"type": "pickString",
+			"id": "scriptName",
+			"description": "Select the Python script to launch",
+			"options": ["scraping_fotos.py"]
+		}
+	]
+}

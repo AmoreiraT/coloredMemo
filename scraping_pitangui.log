@@ -1,0 +1,315 @@
+2024-11-28 17:39:00,380 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010475fac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000104758314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001041c04b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000104204898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x000000010423e0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x00000001041f90b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x00000001041f9d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x000000010472ae08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x000000010472e120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x000000010471217c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x000000010472e9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000104703988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x00000001047490f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x0000000104749270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000104757f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x000000018c7632e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018c75e0fc thread_start + 8
+
+2024-11-28 17:39:00,471 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 17:42:01,555 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000105163ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x000000010515c314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000104bc44b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000104c08898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000104c420fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000104bfd0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000104bfdd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x000000010512ee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000105132120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x000000010511617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001051329e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000105107988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x000000010514d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x000000010514d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x000000010515bf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x000000018c7632e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018c75e0fc thread_start + 8
+
+2024-11-28 17:42:01,647 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 17:42:31,119 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000103553ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x000000010354c314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000102fb44b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000102ff8898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x00000001030320fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000102fed0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000102fedd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x000000010351ee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000103522120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x000000010350617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001035229e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x00000001034f7988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x000000010353d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x000000010353d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x000000010354bf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x000000018c7632e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018c75e0fc thread_start + 8
+
+2024-11-28 17:42:31,223 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:29:26,464 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000105453ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x000000010544c314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000104eb44b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000104ef8898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000104f320fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000104eed0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000104eedd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x000000010541ee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000105422120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x000000010540617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001054229e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x00000001053f7988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x000000010543d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x000000010543d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x000000010544bf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:29:26,556 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:32:56,775 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000100eb3ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000100eac314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001009144b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000100958898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x00000001009920fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x000000010094d0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x000000010094dd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x0000000100e7ee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000100e82120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x0000000100e6617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x0000000100e829e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000100e57988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x0000000100e9d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x0000000100e9d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000100eabf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:32:56,873 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:35:08,308 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x00000001049bfac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x00000001049b8314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001044204b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000104464898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x000000010449e0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x00000001044590b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000104459d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x000000010498ae08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x000000010498e120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x000000010497217c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x000000010498e9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000104963988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x00000001049a90f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x00000001049a9270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x00000001049b7f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:35:08,405 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:35:08,406 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104697040>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/1c0c3002fb3bfe0812027cefc766ebc2/source
+2024-11-28 19:35:08,407 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104697130>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/1c0c3002fb3bfe0812027cefc766ebc2/source
+2024-11-28 19:35:08,408 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104697280>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/1c0c3002fb3bfe0812027cefc766ebc2/source
+2024-11-28 19:39:18,782 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000100bcbac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000100bc4314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x000000010062c4b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000100670898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x00000001006aa0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x00000001006650b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000100665d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x0000000100b96e08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000100b9a120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x0000000100b7e17c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x0000000100b9a9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000100b6f988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x0000000100bb50f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x0000000100bb5270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000100bc3f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:39:18,871 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:40:21,381 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x00000001030efac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x00000001030e8314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000102b504b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000102b94898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000102bce0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000102b890b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000102b89d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x00000001030bae08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x00000001030be120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x00000001030a217c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001030be9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000103093988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x00000001030d90f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x00000001030d9270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x00000001030e7f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:40:21,473 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:43:31,567 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000103033ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x000000010302c314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000102a944b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000102ad8898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000102b120fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000102acd0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000102acdd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x0000000102ffee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000103002120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x0000000102fe617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001030029e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000102fd7988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x000000010301d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x000000010301d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x000000010302bf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 19:43:31,661 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:45:18,138 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:20,518 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:24,483 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:27,146 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:29,910 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:32,469 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:34,938 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:37,471 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:43,015 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:45,627 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:48,137 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:50,696 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:53,360 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:55,845 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:45:58,225 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:00,631 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:03,085 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:05,650 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:08,051 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:10,464 - ERROR - Erro ao extrair informações: 'NoneType' object has no attribute 'text'
+2024-11-28 19:46:10,648 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 19:48:32,613 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63080.jpg
+2024-11-28 19:48:32,791 - INFO - Imagem baixada: fotos_pitangui/63080.jpg
+2024-11-28 19:48:36,188 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63085.jpg
+2024-11-28 19:48:36,231 - INFO - Imagem baixada: fotos_pitangui/63085.jpg
+2024-11-28 19:48:38,751 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63078.jpg
+2024-11-28 19:48:38,802 - INFO - Imagem baixada: fotos_pitangui/63078.jpg
+2024-11-28 19:48:43,050 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63079.jpg
+2024-11-28 19:48:43,101 - INFO - Imagem baixada: fotos_pitangui/63079.jpg
+2024-11-28 19:48:45,608 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63074.jpg
+2024-11-28 19:48:45,654 - INFO - Imagem baixada: fotos_pitangui/63074.jpg
+2024-11-28 19:48:49,495 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63082.jpg
+2024-11-28 19:48:49,547 - INFO - Imagem baixada: fotos_pitangui/63082.jpg
+2024-11-28 19:48:52,164 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/61638.jpg
+2024-11-28 19:48:52,235 - INFO - Imagem baixada: fotos_pitangui/61638.jpg
+2024-11-28 19:48:54,764 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32703.jpg
+2024-11-28 19:48:54,840 - INFO - Imagem baixada: fotos_pitangui/32703.jpg
+2024-11-28 19:48:59,333 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32701.jpg
+2024-11-28 19:48:59,385 - INFO - Imagem baixada: fotos_pitangui/32701.jpg
+2024-11-28 19:49:01,892 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32700.jpg
+2024-11-28 19:49:01,975 - INFO - Imagem baixada: fotos_pitangui/32700.jpg
+2024-11-28 19:49:06,095 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30057.jpg
+2024-11-28 19:49:06,152 - INFO - Imagem baixada: fotos_pitangui/30057.jpg
+2024-11-28 19:49:08,754 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30055.jpg
+2024-11-28 19:49:08,813 - INFO - Imagem baixada: fotos_pitangui/30055.jpg
+2024-11-28 19:49:11,421 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29648.jpg
+2024-11-28 19:49:11,479 - INFO - Imagem baixada: fotos_pitangui/29648.jpg
+2024-11-28 19:49:15,203 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30056.jpg
+2024-11-28 19:49:15,270 - INFO - Imagem baixada: fotos_pitangui/30056.jpg
+2024-11-28 19:49:19,137 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29645.jpg
+2024-11-28 19:49:19,198 - INFO - Imagem baixada: fotos_pitangui/29645.jpg
+2024-11-28 19:49:23,087 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29649.jpg
+2024-11-28 19:49:23,142 - INFO - Imagem baixada: fotos_pitangui/29649.jpg
+2024-11-28 19:49:26,568 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29655.jpg
+2024-11-28 19:49:26,623 - INFO - Imagem baixada: fotos_pitangui/29655.jpg
+2024-11-28 19:49:30,564 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29654.jpg
+2024-11-28 19:49:30,647 - INFO - Imagem baixada: fotos_pitangui/29654.jpg
+2024-11-28 19:49:34,455 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29646.jpg
+2024-11-28 19:49:34,513 - INFO - Imagem baixada: fotos_pitangui/29646.jpg
+2024-11-28 19:49:36,901 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29647.jpg
+2024-11-28 19:49:36,959 - INFO - Imagem baixada: fotos_pitangui/29647.jpg
+2024-11-28 19:49:37,074 - INFO - Processo concluído. 20 fotos encontradas e salvas.
+2024-11-28 19:54:31,219 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63080.jpg
+2024-11-28 19:54:31,219 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:31,285 - INFO - Imagem baixada: fotos_pitangui/63080.jpg
+2024-11-28 19:54:33,797 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63085.jpg
+2024-11-28 19:54:33,797 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:33,839 - INFO - Imagem baixada: fotos_pitangui/63085.jpg
+2024-11-28 19:54:36,439 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63078.jpg
+2024-11-28 19:54:36,439 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:36,483 - INFO - Imagem baixada: fotos_pitangui/63078.jpg
+2024-11-28 19:54:39,100 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63079.jpg
+2024-11-28 19:54:39,100 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:39,146 - INFO - Imagem baixada: fotos_pitangui/63079.jpg
+2024-11-28 19:54:41,756 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63074.jpg
+2024-11-28 19:54:41,756 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:41,806 - INFO - Imagem baixada: fotos_pitangui/63074.jpg
+2024-11-28 19:54:44,320 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/63082.jpg
+2024-11-28 19:54:44,320 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:44,365 - INFO - Imagem baixada: fotos_pitangui/63082.jpg
+2024-11-28 19:54:46,983 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/IPS/61638.jpg
+2024-11-28 19:54:46,984 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:47,052 - INFO - Imagem baixada: fotos_pitangui/61638.jpg
+2024-11-28 19:54:49,443 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32703.jpg
+2024-11-28 19:54:49,443 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:49,529 - INFO - Imagem baixada: fotos_pitangui/32703.jpg
+2024-11-28 19:54:52,120 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32701.jpg
+2024-11-28 19:54:52,120 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:52,177 - INFO - Imagem baixada: fotos_pitangui/32701.jpg
+2024-11-28 19:54:54,673 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/FJBP-1-10.53/32700.jpg
+2024-11-28 19:54:54,673 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:54,751 - INFO - Imagem baixada: fotos_pitangui/32700.jpg
+2024-11-28 19:54:57,566 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30057.jpg
+2024-11-28 19:54:57,566 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:54:57,625 - INFO - Imagem baixada: fotos_pitangui/30057.jpg
+2024-11-28 19:55:01,236 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30055.jpg
+2024-11-28 19:55:01,236 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:01,296 - INFO - Imagem baixada: fotos_pitangui/30055.jpg
+2024-11-28 19:55:03,882 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29648.jpg
+2024-11-28 19:55:03,882 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:03,950 - INFO - Imagem baixada: fotos_pitangui/29648.jpg
+2024-11-28 19:55:06,545 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/NC-13.21/30056.jpg
+2024-11-28 19:55:06,545 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:06,617 - INFO - Imagem baixada: fotos_pitangui/30056.jpg
+2024-11-28 19:55:09,156 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29645.jpg
+2024-11-28 19:55:09,156 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:09,215 - INFO - Imagem baixada: fotos_pitangui/29645.jpg
+2024-11-28 19:55:11,867 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29649.jpg
+2024-11-28 19:55:11,867 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:11,939 - INFO - Imagem baixada: fotos_pitangui/29649.jpg
+2024-11-28 19:55:14,460 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29655.jpg
+2024-11-28 19:55:14,460 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:14,523 - INFO - Imagem baixada: fotos_pitangui/29655.jpg
+2024-11-28 19:55:16,901 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29654.jpg
+2024-11-28 19:55:16,901 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:16,963 - INFO - Imagem baixada: fotos_pitangui/29654.jpg
+2024-11-28 19:55:19,495 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29646.jpg
+2024-11-28 19:55:19,495 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:19,553 - INFO - Imagem baixada: fotos_pitangui/29646.jpg
+2024-11-28 19:55:22,104 - INFO - URL da imagem encontrada: http://www.siaapm.cultura.mg.gov.br/acervo/fotografico/M-12.21/29647.jpg
+2024-11-28 19:55:22,104 - INFO - Título: , Descrição: , Referências: , Notação: , Autor: , Local: , Data: , Cor: , Dimensão: , Notas: , Descritores: 
+2024-11-28 19:55:22,163 - INFO - Imagem baixada: fotos_pitangui/29647.jpg
+2024-11-28 19:55:22,379 - INFO - Processo concluído. 20 fotos encontradas e salvas.
