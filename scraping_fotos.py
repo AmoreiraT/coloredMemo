@@ -28,17 +28,17 @@ def extrair_informacoes(driver):
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         
         # Ajustar seletores CSS conforme necessário
-        titulo = soup.select_one('h2.titulo').text.strip() if soup.select_one('h2.titulo') else ""
-        descricao = soup.select_one('.descricao').text.strip() if soup.select_one('.descricao') else ""
-        referencias = soup.select_one('.referencias').text.strip() if soup.select_one('.referencias') else ""
-        notacao = soup.select_one('.notacao').text.strip() if soup.select_one('.notacao') else ""
-        autor = soup.select_one('.autor').text.strip() if soup.select_one('.autor') else ""
-        local = soup.select_one('.local').text.strip() if soup.select_one('.local') else ""
-        data = soup.select_one('.data').text.strip() if soup.select_one('.data') else ""
-        cor = soup.select_one('.cor').text.strip() if soup.select_one('.cor') else ""
-        dimensao = soup.select_one('.dimensao').text.strip() if soup.select_one('.dimensao') else ""
-        notas = soup.select_one('.notas').text.strip() if soup.select_one('.notas') else ""
-        descritores = soup.select_one('.descritores').text.strip() if soup.select_one('.descritores') else ""
+        titulo = soup.find(text="Título:").find_next().text.strip() if soup.find(text="Título:") else ""
+        descricao = soup.find(text="Descrição:").find_next().text.strip() if soup.find(text="Descrição:") else ""
+        referencias = soup.find(text="Referências:").find_next().text.strip() if soup.find(text="Referências:") else ""
+        notacao = soup.find(text="Notação:").find_next().text.strip() if soup.find(text="Notação:") else ""
+        autor = soup.find(text="Autor:").find_next().text.strip() if soup.find(text="Autor:") else ""
+        local = soup.find(text="Local:").find_next().text.strip() if soup.find(text="Local:") else ""
+        data = soup.find(text="Data:").find_next().text.strip() if soup.find(text="Data:") else ""
+        cor = soup.find(text="Cor:").find_next().text.strip() if soup.find(text="Cor:") else ""
+        dimensao = soup.find(text="Dimensão:").find_next().text.strip() if soup.find(text="Dimensão:") else ""
+        notas = soup.find(text="Notas:").find_next().text.strip() if soup.find(text="Notas:") else ""
+        descritores = soup.find(text="Descritores:").find_next().text.strip() if soup.find(text="Descritores:") else ""
         
         # Encontrar a URL da imagem (considerando que pode estar em tags diferentes)
         imagem = soup.find('img', src=lambda src: src and 'fotografico' in src)
