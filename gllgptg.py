@@ -41,14 +41,20 @@ def extrair_informacoes(driver):
                 # Créditos
                 creditos = img_div.select_one('span[jsname="sTFXNd"]').text.strip()
 
-                imagens.append({
-                    'url_imagem': url_imagem,
-                    'referencia': referencia,
-                    'url_referencia': url_referencia,
-                    'creditos': creditos
-                })
+                # Verificar se a imagem é de Pitangui antiga
+                descricao = img_div.select_one('img')['alt']
+                if any(keyword in descricao.lower() for keyword in ["pitangui", "1950", "preto e branco", "histórica"]):
+                    imagens.append({
+                        'url_imagem': url_imagem,
+                        'referencia': referencia,
+                        'url_referencia': url_referencia,
+                        'creditos': creditos,
+                        'descricao': descricao
+                    })
+                    logging.info(f"Informações da imagem extraídas: {url_imagem}")
+                else:
+                    logging.info(f"Imagem ignorada: {url_imagem} - Descrição: {descricao}")
 
-                logging.info(f"Informações da imagem extraídas: {url_imagem}")
             except Exception as e:
                 logging.error(f"Erro ao extrair informações da imagem: {e}")
                 continue
@@ -69,6 +75,19 @@ def baixar_imagem(url_imagem, nome_arquivo):
         logging.info(f"Imagem baixada: {nome_arquivo}")
     except Exception as e:
         logging.error(f"Erro ao baixar imagem: {e}")
+
+def extrair_detalhes_imagem(url_referencia):
+    """Extrai detalhes adicionais da página de referência da imagem."""
+    try:
+        response = requests.get(url_referencia)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        # Extraímos informações adicionais, como textos relevantes que possam estar na página
+        detalhes = soup.get_text(separator=' ', strip=True)
+        return detalhes
+    except Exception as e:
+        logging.error(f"Erro ao extrair detalhes da referência: {e}")
+        return ""
 
 # Inicializar o driver do Chrome
 driver = webdriver.Chrome()
@@ -92,6 +111,11 @@ try:
         nome_imagem = f"fotos_acervos_pitangui/{img_info['url_imagem'].split('/')[-1]}"
         baixar_imagem(img_info['url_imagem'], nome_imagem)
         img_info['nome_arquivo'] = nome_imagem
+        
+        # Extrair detalhes adicionais da página de referência
+        detalhes = extrair_detalhes_imagem(img_info['url_referencia'])
+        img_info['detalhes'] = detalhes
+        
         fotos.append(img_info)
     
 except Exception as e:

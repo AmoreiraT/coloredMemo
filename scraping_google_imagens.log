@@ -20,3 +20,37 @@ Stacktrace:
 16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
 
 2024-11-28 20:34:26,086 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 20:37:58,077 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,078 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,078 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,078 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,078 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,078 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,079 - ERROR - Erro ao extrair informações da imagem: 'NoneType' object has no attribute 'text'
+2024-11-28 20:37:58,194 - INFO - Processo concluído. 0 fotos encontradas e salvas.
+2024-11-28 20:40:29,795 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000102c5bac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000102c54314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001026bc4b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000102700898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x000000010273a0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x00000001026f50b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x00000001026f5d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x0000000102c26e08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000102c2a120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x0000000102c0e17c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x0000000102c2a9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000102bff988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x0000000102c450f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x0000000102c45270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000102c53f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 20:40:29,893 - INFO - Processo concluído. 0 fotos encontradas e salvas.
