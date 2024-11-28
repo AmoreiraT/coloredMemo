@@ -1,0 +1,22 @@
+2024-11-28 20:34:03,128 - INFO - Pasta 'fotos_acervos_pitangui' criada.
+2024-11-28 20:34:25,990 - ERROR - Erro ao processar página: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000100f23ac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000100f1c314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001009844b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x00000001009c8898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000100a020fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x00000001009bd0b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x00000001009bdd00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x0000000100eeee08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x0000000100ef2120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x0000000100ed617c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x0000000100ef29e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x0000000100ec7988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x0000000100f0d0f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x0000000100f0d270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000100f1bf88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000187d7b2e4 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000187d760fc thread_start + 8
+
+2024-11-28 20:34:26,086 - INFO - Processo concluído. 0 fotos encontradas e salvas.
