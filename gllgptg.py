@@ -1,6 +1,7 @@
 import logging
 import json
 import os
+import time
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -8,133 +9,138 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 
-# Configuração do logging
-logging.basicConfig(filename='scraping_google_imagens.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+# Configure logging
+logging.basicConfig(filename='scraping_historico_pitangui.log', level=logging.INFO,
+                   format='%(asctime)s - %(levelname)s - %(message)s')
 
-# URL de busca no Google Imagens
-search_url = "https://www.google.com/search?q=acervos+hist%C3%B3ricos+de+Pitangui&tbm=isch"
-
-# Criar pasta para downloads
-if not os.path.exists('fotos_acervos_pitangui'):
-    os.makedirs('fotos_acervos_pitangui')
-    logging.info("Pasta 'fotos_acervos_pitangui' criada.")
-
-def extrair_informacoes(driver):
-    """Extrai informações das imagens do Google Imagens."""
-    try:
-        imagens = []
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-        # Selecionar blocos de imagem e clicar nas imagens relevantes
-        for img_div in soup.select('div[jsname="N9Xkfe"]'):
+class ImageScraper:
+    def __init__(self):
+        self.setup_chrome()
+        self.create_download_folder()
+        self.fotos = []
+        
+    def setup_chrome(self):
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')  # Run in headless mode
+        self.driver = webdriver.Chrome(options=chrome_options)
+        
+    def create_download_folder(self):
+        if not os.path.exists('fotos_historicas_pitangui'):
+            os.makedirs('fotos_historicas_pitangui')
+            logging.info("Pasta 'fotos_historicas_pitangui' criada")
+            
+    def scroll_page(self):
+        SCROLL_PAUSE_TIME = 2
+        last_height = self.driver.execute_script("return document.body.scrollHeight")
+        
+        while True:
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(SCROLL_PAUSE_TIME)
+            
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break
+            last_height = new_height
+            
+    def extract_image_info(self, img_element):
+        try:
+            img_url = img_element.get_attribute('src')
+            if not img_url or 'data:' in img_url:
+                img_url = img_element.get_attribute('data-src')
+                
+            img_alt = img_element.get_attribute('alt')
+            
+            # Click image to get more details
+            img_element.click()
+            time.sleep(1)
+            
+            # Get larger image
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'img.r48jcc'))
+            )
+            
+            large_img = self.driver.find_element(By.CSS_SELECTOR, 'img.r48jcc')
+            large_img_url = large_img.get_attribute('src')
+            
+            # Get source website
+            source_element = self.driver.find_element(By.CSS_SELECTOR, 'div.K2DeBd a')
+            source_url = source_element.get_attribute('href')
+            source_text = source_element.text
+            
+            return {
+                'url_imagem': large_img_url,
+                'url_miniatura': img_url,
+                'descricao': img_alt,
+                'fonte': source_text,
+                'url_fonte': source_url
+            }
+            
+        except Exception as e:
+            logging.error(f"Erro ao extrair informações da imagem: {str(e)}")
+            return None
+            
+    def download_image(self, url, filename):
+        try:
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+            
+            with open(filename, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+                    
+            return True
+        except Exception as e:
+            logging.error(f"Erro ao baixar imagem {url}: {str(e)}")
+            return False
+            
+    def scrape_images(self):
+        search_queries = [
+            "fotos antigas Pitangui Minas Gerais",
+            "Pitangui MG história fotografias",
+            "Pitangui século XX fotos",
+            "imagens históricas Pitangui"
+        ]
+        
+        for query in search_queries:
             try:
-                img_tag = img_div.select_one('img')
-                span_tag = img_div.select_one('span[jsname="sTFXNd"]')
-
-                if img_tag and span_tag:
-                    descricao = img_tag.get('alt', '')
-                    if any(keyword in descricao.lower() for keyword in ["pitangui", "1950", "preto e branco", "histórica"]):
-                        # Clicar na imagem para abrir o detalhe
-                        img_tag.click()
-                        WebDriverWait(driver, 10).until(
-                            EC.presence_of_element_located((By.CSS_SELECTOR, 'img.n3VNCb'))
-                        )
-                        detail_soup = BeautifulSoup(driver.page_source, 'html.parser')
-                        detail_img_tag = detail_soup.select_one('img.n3VNCb')
-                        detail_url = detail_img_tag.get('src')
-
-                        # Referência da imagem
-                        referencia = img_div.select_one('a[jsname="hSRGPd"]').text.strip()
-                        url_referencia = f"https://www.google.com{img_div.select_one('a[jsname="hSRGPd"]')['href']}"
-
-                        # Créditos
-                        creditos = span_tag.text.strip()
-
-                        imagens.append({
-                            'url_imagem': detail_url,
-                            'referencia': referencia,
-                            'url_referencia': url_referencia,
-                            'creditos': creditos,
-                            'descricao': descricao
-                        })
-                        logging.info(f"Informações da imagem extraídas: {detail_url}")
-                    else:
-                        logging.info(f"Imagem ignorada: {descricao}")
-                else:
-                    logging.info("Elemento esperado não encontrado na estrutura HTML.")
+                url = f"https://www.google.com/search?q={query.replace(' ', '+')}&tbm=isch"
+                self.driver.get(url)
+                
+                self.scroll_page()
+                
+                images = self.driver.find_elements(By.CSS_SELECTOR, 'img.rg_i')
+                
+                for img in images:
+                    info = self.extract_image_info(img)
+                    if info:
+                        filename = f"fotos_historicas_pitangui/{len(self.fotos):03d}.jpg"
+                        if self.download_image(info['url_imagem'], filename):
+                            info['arquivo_local'] = filename
+                            self.fotos.append(info)
+                            
             except Exception as e:
-                logging.error(f"Erro ao extrair informações da imagem: {e}")
-                continue
-
-        return imagens
-    except Exception as e:
-        logging.error(f"Erro ao extrair informações: {e}")
-        return []
-
-def baixar_imagem(url_imagem, nome_arquivo):
-    """Baixa a imagem da URL fornecida."""
-    try:
-        response = requests.get(url_imagem, stream=True)
-        response.raise_for_status()
-        with open(nome_arquivo, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        logging.info(f"Imagem baixada: {nome_arquivo}")
-    except Exception as e:
-        logging.error(f"Erro ao baixar imagem: {e}")
-
-def extrair_detalhes_imagem(url_referencia):
-    """Extrai detalhes adicionais da página de referência da imagem."""
-    try:
-        response = requests.get(url_referencia)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        detalhes = soup.get_text(separator=' ', strip=True)
-        return detalhes
-    except Exception as e:
-        logging.error(f"Erro ao extrair detalhes da referência: {e}")
-        return ""
-
-# Inicializar o driver do Chrome
-driver = webdriver.Chrome()
-
-# Lista para armazenar os dados das fotos
-fotos = []
-
-try:
-    # Acessar a página de busca do Google Imagens
-    driver.get(search_url)
-
-    # Aguardar o carregamento dos resultados
-    WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, 'div[jsname="N9Xkfe"]'))
-    )
-
-    # Extrair informações das imagens
-    imagens = extrair_informacoes(driver)
-
-    for img_info in imagens:
-        nome_imagem = f"fotos_acervos_pitangui/{img_info['url_imagem'].split('/')[-1]}"
-        baixar_imagem(img_info['url_imagem'], nome_imagem)
-        img_info['nome_arquivo'] = nome_imagem
+                logging.error(f"Erro ao processar busca '{query}': {str(e)}")
+                
+    def save_metadata(self):
+        with open('fotos_historicas_pitangui/metadata.json', 'w', encoding='utf-8') as f:
+            json.dump({
+                'fotos': self.fotos,
+                'total': len(self.fotos)
+            }, f, ensure_ascii=False, indent=2)
+            
+    def close(self):
+        self.driver.quit()
         
-        # Extrair detalhes adicionais da página de referência
-        detalhes = extrair_detalhes_imagem(img_info['url_referencia'])
-        img_info['detalhes'] = detalhes
+def main():
+    scraper = ImageScraper()
+    try:
+        scraper.scrape_images()
+        scraper.save_metadata()
+        logging.info(f"Processo concluído. {len(scraper.fotos)} fotos encontradas e salvas.")
+    finally:
+        scraper.close()
         
-        fotos.append(img_info)
-    
-except Exception as e:
-    logging.error(f"Erro ao processar página: {e}")
-
-finally:
-    # Fechar o navegador
-    driver.quit()
-
-# Salvar os dados em um arquivo JSON
-with open('fotos_acervos_pitangui/metadata.json', 'w', encoding='utf-8') as f:
-    json.dump(fotos, f, ensure_ascii=False, indent=4)
-
-logging.info(f"Processo concluído. {len(fotos)} fotos encontradas e salvas.")
+if __name__ == "__main__":
+    main()
