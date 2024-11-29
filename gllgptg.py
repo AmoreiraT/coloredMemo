@@ -3,13 +3,11 @@ import json
 import os
 import time
 import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from selenium.webdriver.chrome.options import Options
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,13 +29,14 @@ class ImageScraper:
         chrome_options.add_argument('--window-size=1920,1080')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--headless')  # Run in headless mode
         self.driver = webdriver.Chrome(options=chrome_options)
         logging.info("Chrome driver initialized")
-        
+
     def create_download_folder(self):
         if not os.path.exists('fotos_historicas_pitangui'):
             os.makedirs('fotos_historicas_pitangui')
-            
+
     def scroll_page(self):
         SCROLL_PAUSE_TIME = 2
         last_height = self.driver.execute_script("return document.body.scrollHeight")
@@ -75,8 +74,10 @@ class ImageScraper:
     def download_image(self, url, filename):
         try:
             headers = {
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-                'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.google.com/'
             }
             
             response = requests.get(url, headers=headers, stream=True, timeout=10)
@@ -87,9 +88,14 @@ class ImageScraper:
                     if chunk:
                         f.write(chunk)
             
-            logging.info(f"Downloaded: {filename}")
-            return True
-            
+            # Verify file was downloaded
+            if os.path.exists(filename) and os.path.getsize(filename) > 0:
+                logging.info(f"Successfully downloaded: {filename}")
+                return True
+            else:
+                logging.error(f"Download failed or empty file: {filename}")
+                return False
+                
         except Exception as e:
             logging.error(f"Error downloading {url}: {str(e)}")
             return False
@@ -102,71 +108,52 @@ class ImageScraper:
             self.driver.get(url)
             logging.info(f"Accessing URL: {url}")
             
-            # Wait for initial load and scroll to load more images
-            time.sleep(2)
-            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(2)
+            # Wait for images to load
+            wait = WebDriverWait(self.driver, 10)
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div[jsname="r5xl4"]')))
             
-            # Try different selectors
-            selectors = [
-                'img.rg_i', 
-                'img[data-src]',
-                'div.isv-r img'
-            ]
+            # Scroll to load more images
+            for _ in range(3):
+                self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                time.sleep(2)
             
-            images = []
-            for selector in selectors:
+            # Get all image containers
+            image_containers = self.driver.find_elements(By.CSS_SELECTOR, 'div[jsname="r5xl4"]')
+            logging.info(f"Found {len(image_containers)} image containers")
+            
+            for index, container in enumerate(image_containers):
                 try:
-                    found_images = self.driver.find_elements(By.CSS_SELECTOR, selector)
-                    if found_images:
-                        images.extend(found_images)
-                        logging.info(f"Found {len(found_images)} images with selector: {selector}")
+                    # Get image URL directly from the container
+                    img = container.find_element(By.TAG_NAME, 'img')
+                    img_url = img.get_attribute('src')
+                    
+                    # Try to get higher resolution URL
+                    if 'data:' in img_url:
+                        img_url = img.get_attribute('data-src')
+                    if not img_url:
+                        continue
+                        
+                    # Sometimes the URL is in data-iurl attribute
+                    if not img_url.startswith('http'):
+                        img_url = img.get_attribute('data-iurl')
+                    
+                    if img_url and img_url.startswith('http'):
+                        filename = f"fotos_historicas_pitangui/pitangui_{index:03d}.jpg"
+                        if self.download_image(img_url, filename):
+                            info = {
+                                'url_imagem': img_url,
+                                'arquivo_local': filename,
+                                'descricao': img.get_attribute('alt') or 'No description'
+                            }
+                            self.fotos.append(info)
+                            logging.info(f"Successfully downloaded image {index}")
+                            
                 except Exception as e:
-                    logging.error(f"Error with selector {selector}: {str(e)}")
-            
-            logging.info(f"Total images found: {len(images)}")
-            
-            # Process each image
-            for index, img in enumerate(images):
-                try:
-                    # Try to get the full resolution image URL
-                    self.driver.execute_script("arguments[0].scrollIntoView();", img)
-                    time.sleep(0.5)
-                    
-                    # Click image to get full resolution
-                    self.driver.execute_script("arguments[0].click();", img)
-                    time.sleep(1)
-                    
-                    # Try to get the large image
-                    large_images = self.driver.find_elements(By.CSS_SELECTOR, 'img.n3VNCb, img.r48jcc')
-                    
-                    if large_images:
-                        for large_img in large_images:
-                            img_url = large_img.get_attribute('src')
-                            if img_url and 'http' in img_url and not 'data:' in img_url:
-                                logging.info(f"Found large image URL: {img_url}")
-                                
-                                filename = f"fotos_historicas_pitangui/pitangui_{index:03d}.jpg"
-                                if self.download_image(img_url, filename):
-                                    info = {
-                                        'url_imagem': img_url,
-                                        'arquivo_local': filename,
-                                        'descricao': img.get_attribute('alt') or 'No description'
-                                    }
-                                    self.fotos.append(info)
-                                    logging.info(f"Successfully processed image {index}")
-                                    break
-                    
-                    # Close the preview if open
-                    close_button = self.driver.find_elements(By.CSS_SELECTOR, 'button[aria-label="Close"]')
-                    if close_button:
-                        close_button[0].click()
-                    time.sleep(0.5)
-                    
-                except Exception as e:
-                    logging.error(f"Error processing image {index}: {str(e)}")
+                    logging.error(f"Error processing container {index}: {str(e)}")
                     continue
                     
+            logging.info(f"Total images downloaded: {len(self.fotos)}")
+            
         except Exception as e:
             logging.error(f"Error in scrape_images: {str(e)}")
             
