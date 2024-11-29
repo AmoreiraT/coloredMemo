@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ConfigProvider, Form, Input, Button as AntButton } from 'antd';
+import { ConfigProvider, Form, Input, Button as AntButton, Switch } from 'antd';
 import 'antd/dist/reset.css';
 import { Button as MuiButton } from '@mui/material';
 import Layout from './components/Layout';
+import PhotoCard from './components/PhotoCard';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
+const App: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [photos] = useState([
+    { url: 'https://via.placeholder.com/150', description: 'Sample Photo 1' },
+    { url: 'https://via.placeholder.com/150', description: 'Sample Photo 2' }
+  ]);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+      primary: {
+        main: '#1976d2',
+      },
     },
-  },
-});
+  });
 
-function App() {
   return (
     <ThemeProvider theme={theme}>
       <ConfigProvider>
@@ -21,6 +29,9 @@ function App() {
           <div style={{ padding: '20px' }}>
             <MuiButton variant="contained" color="primary">Material Button</MuiButton>
             <AntButton type="primary" style={{ marginLeft: '10px' }}>Ant Design Button</AntButton>
+            <div style={{ marginTop: '20px' }}>
+              <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} /> Toggle Dark Mode
+            </div>
             <Form style={{ marginTop: '20px' }}>
               <Form.Item label="Name" name="name">
                 <Input />
@@ -32,6 +43,11 @@ function App() {
                 <AntButton type="primary" htmlType="submit">Submit</AntButton>
               </Form.Item>
             </Form>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+              {photos.map((photo, index) => (
+                <PhotoCard key={index} photo={photo} />
+              ))}
+            </div>
           </div>
         </Layout>
       </ConfigProvider>

@@ -13,11 +13,16 @@
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@mui/material": "^6.1.9",
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
     "@tanstack/react-query": "^5.61.5",
     "antd": "^5.22.2",
+    "axios": "^1.7.8",
     "firebase": "^11.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-query": "^3.39.3",
+    "three": "^0.170.0",
     "zustand": "^5.0.1"
   },
   "devDependencies": {
