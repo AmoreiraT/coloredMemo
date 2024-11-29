@@ -5,7 +5,7 @@ import { ConfigProvider } from 'antd';
 import React, { useEffect } from 'react';
 import { useDeletePhoto } from './commands/photoCommands';
 import Layout from './components/Layout';
-import { queryClient } from './queryClient';
+import { queryClient } from './lib/queryClient';
 import { usePhotos } from './store/usePhotoStore';
 import { Photo } from './types/Photo';
 import { importInitialData } from './utils/importInitialData';
@@ -27,7 +27,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const call = async () => importInitialData();
+    const call = async () => await importInitialData();
 
     call();
   }, []);

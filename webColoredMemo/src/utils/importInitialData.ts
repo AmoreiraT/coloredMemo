@@ -9,9 +9,9 @@ export const importInitialData = async () => {
         await photoRepository.add({
             ...photo,
             status: 'pending',
-            url_imagem_colorida: undefined,
-            colorizedUrl: undefined,
-            description: undefined
+            url_imagem_colorida: '',
+            colorizedUrl: '',
+            description: ''
         });
     }
 };
