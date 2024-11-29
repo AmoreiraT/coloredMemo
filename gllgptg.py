@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 
 logging.basicConfig(
@@ -37,6 +37,19 @@ class ImageScraper:
     def create_download_folder(self):
         if not os.path.exists('fotos_historicas_pitangui'):
             os.makedirs('fotos_historicas_pitangui')
+            
+    def scroll_page(self):
+        SCROLL_PAUSE_TIME = 2
+        last_height = self.driver.execute_script("return document.body.scrollHeight")
+        
+        while True:
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(SCROLL_PAUSE_TIME)
+            
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break
+            last_height = new_height
             
     def extract_image_info(self, img_element):
         try:
