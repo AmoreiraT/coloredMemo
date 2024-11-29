@@ -1,5 +1,5 @@
+import { AppBar, Container, CssBaseline, Toolbar, Typography } from '@mui/material';
 import React from 'react';
-import { AppBar, Toolbar, Typography, CssBaseline, Container } from '@mui/material';
 
 interface LayoutProps {
     children: React.ReactNode;

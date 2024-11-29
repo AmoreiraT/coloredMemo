@@ -1,14 +1,14 @@
 // src/commands/usePhotoCommands.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Photo, PhotoRepository } from '../repositories/PhotoRepository'
+import { createPhotoRepository, Photo } from '../repositories/PhotoRepository'
 
-const photoRepository = new PhotoRepository()
 
 export const useAddPhoto = () => {
+    const photoRepository = createPhotoRepository()
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: (photo: Omit<Photo, 'id'>) => photoRepository.add(photo),
+        mutationFn: async (photo: Omit<Photo, 'id'>) => await photoRepository.add(photo),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['photos'] })
         }

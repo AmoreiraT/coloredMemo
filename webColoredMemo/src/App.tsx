@@ -2,12 +2,13 @@ import { Button as MuiButton } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ConfigProvider } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDeletePhoto } from './commands/photoCommands';
 import Layout from './components/Layout';
 import { queryClient } from './queryClient';
 import { usePhotos } from './store/usePhotoStore';
 import { Photo } from './types/Photo';
+import { importInitialData } from './utils/importInitialData';
 
 const theme = createTheme({
   palette: {
@@ -24,6 +25,12 @@ const App: React.FC = () => {
   const handleDeletePhoto = async (id: string) => {
     await deletePhotoMutation.mutateAsync(id);
   };
+
+  useEffect(() => {
+    const call = async () => importInitialData();
+
+    call();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

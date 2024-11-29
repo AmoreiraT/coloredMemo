@@ -8,33 +8,39 @@ export interface IRepository<T> {
     delete(collectionName: string, documentId: string): Promise<void>;
 }
 
-export class FirestoreRepository<T extends Record<string, unknown>> implements IRepository<T> {
-    async create(collectionName: string, data: T): Promise<T> {
+export const createFirestoreRepository = <T extends Record<string, unknown>>(): IRepository<T> => {
+    const create = async (collectionName: string, data: T): Promise<T> => {
         const collectionRef = collection(db, collectionName);
         const docRef = doc(collectionRef);
         await setDoc(docRef, data);
         return data;
-    }
+    };
 
-    async read(collectionName: string, documentId: string): Promise<T> {
+    const read = async (collectionName: string, documentId: string): Promise<T> => {
         const docRef = doc(db, collectionName, documentId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             return docSnap.data() as T;
-        } else {
-            throw new Error('Document not found');
         }
-    }
+        throw new Error('Document not found');
+    };
 
-    async update(collectionName: string, documentId: string, data: Partial<T>): Promise<T> {
+    const update = async (collectionName: string, documentId: string, data: Partial<T>): Promise<T> => {
         const docRef = doc(db, collectionName, documentId);
         await updateDoc(docRef, data as DocumentData);
         const updatedData = { ...data, id: documentId };
         return updatedData as unknown as T;
-    }
+    };
 
-    async delete(collectionName: string, documentId: string): Promise<void> {
+    const delete_ = async (collectionName: string, documentId: string): Promise<void> => {
         const docRef = doc(db, collectionName, documentId);
         await deleteDoc(docRef);
-    }
-}
+    };
+
+    return {
+        create,
+        read,
+        update,
+        delete: delete_
+    };
+};

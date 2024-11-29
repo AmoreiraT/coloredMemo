@@ -1,15 +1,17 @@
 // src/utils/importInitialData.ts
 import initialData from '../../../arquivoPublico/metadata.json'; // seu array de metadados
-import { PhotoRepository } from '../repositories/PhotoRepository';
+import { createPhotoRepository } from '../repositories/PhotoRepository';
 
 export const importInitialData = async () => {
-    const photoRepository = new PhotoRepository();
+    const photoRepository = createPhotoRepository();
 
     for (const photo of initialData) {
         await photoRepository.add({
             ...photo,
             status: 'pending',
-            url_imagem_colorida: undefined
+            url_imagem_colorida: undefined,
+            colorizedUrl: undefined,
+            description: undefined
         });
     }
 };

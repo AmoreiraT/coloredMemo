@@ -1,5 +1,5 @@
-import React from 'react';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import React from 'react';
 
 interface PhotoCardProps {
   photo: {

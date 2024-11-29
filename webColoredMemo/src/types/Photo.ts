@@ -1,5 +1,7 @@
 // src/types/Photo.ts
 export interface Photo {
+    colorizedUrl: string | undefined;
+    description: string | undefined;
     id: string;
     titulo: string;
     descricao: string;
