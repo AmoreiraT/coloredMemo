@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ConfigProvider, Form, Input, Button as AntButton } from 'antd';
+import 'antd/dist/reset.css';
+import { Button as MuiButton } from '@mui/material';
+import Layout from './components/Layout';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <ConfigProvider>
+        <Layout>
+          <div style={{ padding: '20px' }}>
+            <MuiButton variant="contained" color="primary">Material Button</MuiButton>
+            <AntButton type="primary" style={{ marginLeft: '10px' }}>Ant Design Button</AntButton>
+            <Form style={{ marginTop: '20px' }}>
+              <Form.Item label="Name" name="name">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Email" name="email">
+                <Input />
+              </Form.Item>
+              <Form.Item>
+                <AntButton type="primary" htmlType="submit">Submit</AntButton>
+              </Form.Item>
+            </Form>
+          </div>
+        </Layout>
+      </ConfigProvider>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
