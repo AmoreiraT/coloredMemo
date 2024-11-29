@@ -100,21 +100,69 @@ class ImageScraper:
         
         try:
             self.driver.get(url)
-            time.sleep(3)  # Wait for images to load
+            logging.info(f"Accessing URL: {url}")
             
-            # Find all image elements
-            images = self.driver.find_elements(By.CSS_SELECTOR, 'img.rg_i')
-            logging.info(f"Found {len(images)} images")
+            # Wait for initial load and scroll to load more images
+            time.sleep(2)
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(2)
             
+            # Try different selectors
+            selectors = [
+                'img.rg_i', 
+                'img[data-src]',
+                'div.isv-r img'
+            ]
+            
+            images = []
+            for selector in selectors:
+                try:
+                    found_images = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                    if found_images:
+                        images.extend(found_images)
+                        logging.info(f"Found {len(found_images)} images with selector: {selector}")
+                except Exception as e:
+                    logging.error(f"Error with selector {selector}: {str(e)}")
+            
+            logging.info(f"Total images found: {len(images)}")
+            
+            # Process each image
             for index, img in enumerate(images):
                 try:
-                    info = self.extract_image_info(img)
-                    if info and info['url_imagem']:
-                        filename = f"fotos_historicas_pitangui/pitangui_{index:03d}.jpg"
-                        if self.download_image(info['url_imagem'], filename):
-                            info['arquivo_local'] = filename
-                            self.fotos.append(info)
-                            
+                    # Try to get the full resolution image URL
+                    self.driver.execute_script("arguments[0].scrollIntoView();", img)
+                    time.sleep(0.5)
+                    
+                    # Click image to get full resolution
+                    self.driver.execute_script("arguments[0].click();", img)
+                    time.sleep(1)
+                    
+                    # Try to get the large image
+                    large_images = self.driver.find_elements(By.CSS_SELECTOR, 'img.n3VNCb, img.r48jcc')
+                    
+                    if large_images:
+                        for large_img in large_images:
+                            img_url = large_img.get_attribute('src')
+                            if img_url and 'http' in img_url and not 'data:' in img_url:
+                                logging.info(f"Found large image URL: {img_url}")
+                                
+                                filename = f"fotos_historicas_pitangui/pitangui_{index:03d}.jpg"
+                                if self.download_image(img_url, filename):
+                                    info = {
+                                        'url_imagem': img_url,
+                                        'arquivo_local': filename,
+                                        'descricao': img.get_attribute('alt') or 'No description'
+                                    }
+                                    self.fotos.append(info)
+                                    logging.info(f"Successfully processed image {index}")
+                                    break
+                    
+                    # Close the preview if open
+                    close_button = self.driver.find_elements(By.CSS_SELECTOR, 'button[aria-label="Close"]')
+                    if close_button:
+                        close_button[0].click()
+                    time.sleep(0.5)
+                    
                 except Exception as e:
                     logging.error(f"Error processing image {index}: {str(e)}")
                     continue

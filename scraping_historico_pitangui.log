@@ -44,3 +44,7 @@
 2024-11-28 21:18:10,970 - INFO - Chrome driver initialized
 2024-11-28 21:18:15,763 - INFO - Found 0 images
 2024-11-28 21:18:15,763 - INFO - Saved metadata for 0 images
+2024-11-28 21:20:42,848 - INFO - Chrome driver initialized
+2024-11-28 21:20:44,332 - INFO - Accessing URL: https://www.google.com/search?q=fotos+antigas+Pitangui+Minas+Gerais&tbm=isch
+2024-11-28 21:20:48,374 - INFO - Total images found: 0
+2024-11-28 21:20:48,375 - INFO - Saved metadata for 0 images
