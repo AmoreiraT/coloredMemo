@@ -1,6 +1,5 @@
+import { DocumentData, collection, deleteDoc, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { collection, doc, setDoc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import axios from 'axios';
 
 export interface IRepository<T> {
     create(collectionName: string, data: T): Promise<T>;
@@ -9,7 +8,7 @@ export interface IRepository<T> {
     delete(collectionName: string, documentId: string): Promise<void>;
 }
 
-export class FirestoreRepository<T> implements IRepository<T> {
+export class FirestoreRepository<T extends Record<string, unknown>> implements IRepository<T> {
     async create(collectionName: string, data: T): Promise<T> {
         const collectionRef = collection(db, collectionName);
         const docRef = doc(collectionRef);
@@ -29,8 +28,9 @@ export class FirestoreRepository<T> implements IRepository<T> {
 
     async update(collectionName: string, documentId: string, data: Partial<T>): Promise<T> {
         const docRef = doc(db, collectionName, documentId);
-        await updateDoc(docRef, data);
-        return { ...data, id: documentId } as T;
+        await updateDoc(docRef, data as DocumentData);
+        const updatedData = { ...data, id: documentId };
+        return updatedData as unknown as T;
     }
 
     async delete(collectionName: string, documentId: string): Promise<void> {

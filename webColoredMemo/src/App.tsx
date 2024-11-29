@@ -1,13 +1,13 @@
-import React from 'react';
-import { useQuery, useMutation, QueryClientProvider } from 'react-query';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ConfigProvider, Form, Input, Button as AntButton } from 'antd';
-import 'antd/dist/reset.css';
 import { Button as MuiButton } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ConfigProvider } from 'antd';
+import React from 'react';
+import { useDeletePhoto } from './commands/photoCommands';
 import Layout from './components/Layout';
-import { firestoreCommands } from './commands/firestoreCommands';
 import { queryClient } from './queryClient';
-import { useFirestoreStore } from './store';
+import { usePhotos } from './store/usePhotoStore';
+import { Photo } from './types/Photo';
 
 const theme = createTheme({
   palette: {
@@ -17,31 +17,12 @@ const theme = createTheme({
   },
 });
 
-interface Document {
-  id: string;
-  name: string;
-  email: string;
-}
-
 const App: React.FC = () => {
-  const { documents, addDocument, removeDocument } = useFirestoreStore<Document>();
+  const { data: photos, isLoading } = usePhotos();
+  const deletePhotoMutation = useDeletePhoto();
 
-  const fetchDocuments = useQuery('documents', async () => {
-    const response = await firestoreCommands.read<Document>('your-collection', 'documentId');
-    return response;
-  });
-
-  const createMutation = useMutation(
-    (newDoc: Document) => firestoreCommands.create<Document>('your-collection', newDoc),
-    {
-      onSuccess: (data) => {
-        addDocument(data);
-      },
-    }
-  );
-
-  const handleSubmit = (values: any) => {
-    createMutation.mutate(values);
+  const handleDeletePhoto = async (id: string) => {
+    await deletePhotoMutation.mutateAsync(id);
   };
 
   return (
@@ -50,33 +31,40 @@ const App: React.FC = () => {
         <ConfigProvider>
           <Layout>
             <div style={{ padding: '20px' }}>
-              <MuiButton variant="contained" color="primary">Material Button</MuiButton>
-              <Form onFinish={handleSubmit} style={{ marginTop: '20px' }}>
-                <Form.Item label="Name" name="name">
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Email" name="email">
-                  <Input />
-                </Form.Item>
-                <Form.Item>
-                  <AntButton type="primary" htmlType="submit">Submit</AntButton>
-                </Form.Item>
-              </Form>
-              <div>
-                {fetchDocuments.data?.map((doc) => (
-                  <div key={doc.id}>
-                    <p>{doc.name}</p>
-                    <p>{doc.email}</p>
-                    <MuiButton onClick={() => removeDocument(doc.id)}>Delete</MuiButton>
-                  </div>
-                ))}
-              </div>
+              {isLoading ? (
+                <div>Carregando...</div>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+                  {photos?.map((photo: Photo) => (
+                    <div key={photo.id} style={{ border: '1px solid #eee', padding: '10px', borderRadius: '8px' }}>
+                      <img
+                        src={photo.url_imagem_colorida || photo.url_imagem}
+                        alt={photo.descricao || photo.notacao}
+                        style={{ width: '100%', height: 'auto' }}
+                      />
+                      <div>
+                        <p><strong>Notação:</strong> {photo.notacao}</p>
+                        <p><strong>Local:</strong> {photo.local}</p>
+                        <p><strong>Data:</strong> {photo.data}</p>
+                        <p><strong>Autor:</strong> {photo.autor}</p>
+                        <MuiButton
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => handleDeletePhoto(photo.id)}
+                        >
+                          Deletar
+                        </MuiButton>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </Layout>
         </ConfigProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
-}
+};
 
-export default App;
+export { App };
